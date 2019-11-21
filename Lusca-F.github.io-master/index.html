@@ -13,8 +13,13 @@
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
 
 
+</script>
     </head>
 
     <body>
@@ -36,7 +41,7 @@
   </ul>
 
 
-  <div class="row Comidas ">
+  <div class="row">
     <div class="col s6 m7">
       <div class="card">
         <div class="card-image">
@@ -66,22 +71,36 @@
       </div>
     </div>
   </div> <!-- esse é o fim do row-->
-
-            
-
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
-
-  </script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script>
+      <div class="center">
+    <a class ="btn-floating btn-small btn-large add-btn sidenav-trigger" data-target="side-from">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+      <div id="side-form" class="sidenav side-form">
+    <form class="adiciona-Comida container section">
+      <h6 >Nova Refeição</h6>
+      <div class="divider"></div>
+      <div class="input-field">
+        <input placeholder="ex. Arroz com Feijão" id="ComidaTitulo" type="text" class="validate">
+        <label for="sobremesaTitulo">Título da Sobremesa</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="Arroz com Feijoada e ovo " id="ComidaDescricao" type="text" class="validate">
+        <label for="sobremesaDescricao">Descrição da Sobremesa</label>
+      </div>
+      <div class="input-field">
+        <input placeholder="Coloque aqui um link que fale da sobremesa" id="ComidaLink" type="text" class="validate">
+        <label for="ComidaLink">Link da Sobremesa</label>
+      </div>
+      <div class="input-field center">
+        <button class="btn-small">Adicionar</button>
+      </div>
+    </form>
+  </div>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-storage.js"></script>
+<script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyAt0uSN2nGm0Mtvp421pvFNvLbH7y9GSqE",
@@ -95,15 +114,70 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
-</script>
 
+    // Obter elementos para o upload
+    var uploader = document.getElementById('uploader');
+    var fileButton = document.getElementById('fileButton');
 
-<script type="text/javascript" src=".js/materialize.min.js"> </script>
-      <script type="text/javascript" src=".js/ui.js"> </script>
-      <script type="text/javascript" src=".js/db.js"> </script>
-      <script type="text/javascript" src="./js/app.js"></script>
+    // Evento que monitora os eventos do botao de upload
+    fileButton.addEventListener('change', function(e) {
+        // obter arquivo
+        var file = e.target.files[0];
+        file.name = document.getElementById("fileButton").value = this.value.substring(12);
+        console.log(file.name);
 
+        // Create the file metadata
+        var metadata = {
+            contentType: 'image/jpeg'
+        };
+        var storageRef = firebase.storage().ref();
 
+        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            function(error) {
+
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        break;
+
+                    case 'storage/canceled':
+                        break;
+
+                    case 'storage/unknown':
+                        break;
+                }
+            },
+            function() {
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    console.log('File available at', downloadURL);
+                });
+            });
+    });
+            
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+
+  </script>
+
+<script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/db.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"> 
       </script>
       <script type="text/javascript" src=".js/ui.js"></script>

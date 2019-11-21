@@ -1,0 +1,114 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      
+      <link rel="manifest" href="/manifest.json">
+
+
+      <meta charset="utf-8">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+    </head>
+
+    <body>
+  <nav class=" blue darken-2">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Comida do dia</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <i class="material-icons">restaurant</i>           
+      <ul class="right hide-on-med-and-down">
+        <li><a href="pages/sobre.html">Sobre Nós</a></li>
+        <li><a href="pages/contato.html">Contatos</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="pages/sobre.html">Sobre Nós</a></li>
+    <li><a href="pages/contato.html">Contatos</a></li>
+  </ul>
+
+
+  <div class="row Comidas ">
+    <div class="col s6 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src="img/comida.jpg">
+          <span class="card-title">Lanchonetes</span>
+        </div>
+        <div class="card-content">
+          <p>Neste Aplicativo você pode encontrar lanchonetes do seu gosto.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+    <div class="col s6 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src="img/comida2.jpeg">
+          <span class="card-title">Almoço e Janta</span>
+        </div>
+        <div class="card-content">
+          <p>Neste Aplicativo você pode encontrar restaurantes do seu gosto.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- esse é o fim do row-->
+
+            
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAt0uSN2nGm0Mtvp421pvFNvLbH7y9GSqE",
+    authDomain: "comida-do-dia-4c382.firebaseapp.com",
+    databaseURL: "https://comida-do-dia-4c382.firebaseio.com",
+    projectId: "comida-do-dia-4c382",
+    storageBucket: "comida-do-dia-4c382.appspot.com",
+    messagingSenderId: "315515343962",
+    appId: "1:315515343962:web:e58403ca8cb793e01e3463"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+
+
+<script type="text/javascript" src=".js/materialize.min.js"> </script>
+      <script type="text/javascript" src=".js/ui.js"> </script>
+      <script type="text/javascript" src=".js/db.js"> </script>
+      <script type="text/javascript" src="./js/app.js"></script>
+
+
+      <script type="text/javascript" src="js/materialize.min.js"> 
+      </script>
+      <script type="text/javascript" src=".js/ui.js"></script>
+    </body>
+  </html>
+
+        
+
