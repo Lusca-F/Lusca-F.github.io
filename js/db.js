@@ -24,7 +24,7 @@ form.addEventListener('submit', evt => {
 
     const Comidas = {
         Nome: form.ComidaNome.value,
-        Descrição: form.ComidaDescricao.value,
+        Descrição: form.ComidaDescrição.value,
         link: form.ComidaLink.value,
         Titulo: form.ComidaTitulo.value,
         
@@ -37,7 +37,7 @@ form.addEventListener('submit', evt => {
     //reseta o formulario
     form.ComidaNome.value= '';
     form.ComidaTitulo.value = '';
-    form.ComidaDescricao.value = '';
+    form.ComidaDescrição.value = '';
     form.ComidaLink.value = '';
     form.ComidaArquivo.value = '';
 
