@@ -31,13 +31,14 @@ form.addEventListener('submit', evt => {
 
     };
 
-    db.collection('Comidas').add(sobremesa)
+    db.collection('Comidas').add(comida)
         .catch(err => console.log(err));
 
     //reseta o formulario
-    form.sobremesaTitulo.value = '';
-    form.sobremesaDescricao.value = '';
-    form.sobremesaLink.value = '';
-    form.sobremesaArquivo.value = '';
+    form.ComidaNome.value= '';
+    form.ComidaTitulo.value = '';
+    form.ComidaDescricao.value = '';
+    form.ComidaLink.value = '';
+    form.ComidaArquivo.value = '';
 
 });
